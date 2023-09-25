@@ -26,6 +26,7 @@ pub struct Method(MethodHttp);
 impl Method {
     pub const GET: Self = Method(MethodHttp::GET);
     pub const POST: Self = Method(MethodHttp::POST);
+    //add more later
 
     pub fn from_bytes(src: &[u8]) -> Result<Method, InvalidMethod> {
         match src {
