@@ -1,4 +1,3 @@
-
 use std::error::Error;
 use std::fmt;
 
@@ -6,6 +5,7 @@ use std::fmt;
 enum MethodHttp {
     GET,
     POST,
+    OPTION,
     //add more later
 }
 
@@ -26,21 +26,20 @@ pub struct Method(MethodHttp);
 impl Method {
     pub const GET: Self = Method(MethodHttp::GET);
     pub const POST: Self = Method(MethodHttp::POST);
-    //add more later
+    pub const OPTION: Self = Method(MethodHttp::OPTION);
 
     pub fn from_bytes(src: &[u8]) -> Result<Method, InvalidMethod> {
         match src {
-            //add more lter
             b"GET" => Ok(Method(MethodHttp::GET)),
             b"POST" => Ok(Method(MethodHttp::POST)),
+            b"OPTION" => Ok(Method(MethodHttp::OPTION)),
             _ => Err(InvalidMethod),
         }
     }
 
     pub fn is_read_only(&self) -> bool {
         match self.0 {
-            MethodHttp::GET | MethodHttp::POST => true,
-          // add more later
+            MethodHttp::GET | MethodHttp::OPTION => true,
             _ => false,
         }
     }
