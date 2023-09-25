@@ -30,6 +30,7 @@ impl Method {
 
     pub fn from_bytes(src: &[u8]) -> Result<Method, InvalidMethod> {
         match src {
+            //add more lter
             b"GET" => Ok(Method(MethodHttp::GET)),
             b"POST" => Ok(Method(MethodHttp::POST)),
             _ => Err(InvalidMethod),
